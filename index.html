@@ -679,18 +679,16 @@
         <div class="header">
             <div class="photo-container">
                 <div class="photo-placeholder">
-                    <!-- Заменяем иконку на изображение -->
                     <img src="https://raw.githubusercontent.com/Aleksey1989god/resume/main/images/avatar.jpg" alt="Alexey Korolyov" style="width:100%; height:100%; border-radius: 50%; object-fit: cover;">
-                    <!-- Стили inline добавлены для примера, лучше перенести в CSS -->
                 </div>
             </div>
             <h1>Alexey Korolyov</h1>
             <div class="position">Data Scientist / Machine Learning Engineer</div>
-            
+
             <div class="contact-bar">
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Moscow, Russia</span>
+                    <span>Moscow</span>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-birthday-cake"></i>
@@ -706,11 +704,11 @@
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-telegram"></i>
-                    <a href="https://t.me/aleksey1989god  " target="_blank">@aleksey1989god</a>
+                    <a href="https://t.me/aleksey1989god" target="_blank">@aleksey1989god</a>
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-github"></i>
-                    <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-  " target="_blank">GitHub</a>
+                    <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-" target="_blank">GitHub</a>
                 </div>
             </div>
 
@@ -718,7 +716,7 @@
                 <a href="#" class="btn" onclick="downloadPDF('en'); return false;">
                     <i class="fas fa-download"></i> Download PDF
                 </a>
-                <a href="https://t.me/aleksey1989god  " class="btn">
+                <a href="https://t.me/aleksey1989god" class="btn">
                     <i class="fab fa-telegram"></i> Contact
                 </a>
             </div>
@@ -729,28 +727,35 @@
                 <section class="section">
                     <h2 class="section-title">About Me</h2>
                     <div class="about-text">
-                        <p>Currently undertaking advanced training at School 21 (Sber) in Data Science program, focusing on practical ML/DL applications, participating in hackathons and digital championships.</p>
-                        <p>Self-studying Transformers, LLM, VLM, Docker, developing chatbots and experimenting with model fine-tuning. Participant in internal DS championships, solving problems in classification, text generation and sequence analysis.</p>
+                        <p>Currently undergoing advanced training at School 21 (Sber) in the Data Science program with a focus on practical application of ML/DL, participation in hackathons and digital championships.</p>
+                        <p>Self-studying Transformers, LLM, VLM, Docker, developing chatbots and experimenting with model fine-tuning. Participant in hackathons and championships, solving problems in classification, text generation and sequence analysis.</p>
                         <p>Active lifestyle: boxing, running, mountaineering, trekking. Valid driving license categories A, B.</p>
                     </div>
                 </section>
 
                 <section class="section">
                     <h2 class="section-title">Work Experience</h2>
-                    
+
                     <div class="timeline-item">
                         <div class="timeline-header">
-                            <div class="company-name">ProShkola LLC</div>
+                            <div class="company-name">ProShkola LLC (subsidiary of VEB.RF)</div>
                             <div class="position-name">Chief Specialist</div>
                             <div class="period">March 2023 — March 2025 (2 years 1 month)</div>
                         </div>
                         <div class="description">
                             <ul>
-                                <li>Developed and implemented LLM-like workflows as Telegram bots using Python (aiogram 3.x) with FSM for dialogue context management</li>
-                                <li>Created multifunctional Telegram bot integrated with Google Sheets via gspread, providing access to key metrics for teams</li>
-                                <li>Designed defect tracking system with photo support and DOCX report generation</li>
-                                <li>Built data collection and enrichment pipeline using SQLite and asynchronous processing (asyncio, aiosqlite)</li>
-                                <li>Award winner of "BPM Project of the Year 2025" for participation in educational infrastructure digitalization project</li>
+                                <li>Developed and implemented a Telegram bot for defect tracking at construction sites, replacing paper reports</li>
+                                <li>Gathered requirements from engineers, foremen and project managers</li>
+                                <li>Designed data entry logic through step-by-step interface (FSM)</li>
+                                <li>Implemented data export to DOCX using python-docx, automating report preparation</li>
+                                <li>Enabled upload of up to 5 photos per defect and input validation</li>
+                                <li>Result: reduced time for defect statements preparation by 40%, decreased data transfer errors</li>
+                                <li>Created multifunctional Telegram bot as information hub for employees of different departments (finance, legal, construction)</li>
+                                <li>Integrated bot with Google Sheets via API (gspread) to provide current metrics</li>
+                                <li>Configured automatic parsing and formatting of data from tables</li>
+                                <li>Organized data access based on user roles</li>
+                                <li>Result: centralized information space, reduced requests to analysts by 60%</li>
+                                <li>Achievement: Participated in implementation of Educational Infrastructure Management Digitalization project (ProShkola LLC) (partner - Comindware) as functional methodologist</li>
                             </ul>
                         </div>
                     </div>
@@ -765,8 +770,8 @@
                             <ul>
                                 <li>Managed team of 12 experts, responsible for quality and deadlines of technical reports</li>
                                 <li>Optimized expert assessment processes, reducing technical specification preparation time by 20%</li>
-                                <li>Prepared commercial proposals based on client data analysis</li>
-                                <li>Led EPB license acquisition, coordinated between teams</li>
+                                <li>Prepared commercial proposals based on client input data analysis</li>
+                                <li>Led EPB license acquisition, ensured coordination between teams</li>
                             </ul>
                         </div>
                     </div>
@@ -789,13 +794,23 @@
 
                 <section class="section">
                     <h2 class="section-title">Pet Projects</h2>
-                    
+
                     <div class="projects-grid">
                         <div class="project-card">
                             <div class="project-title">Telegram Bot for Defect Tracking</div>
                             <div class="project-desc">
                                 <p>Multifunctional bot with FSM, SQLite integration, DOCX report generation. Technologies: aiogram 3.x, asyncio, aiosqlite, python-docx, gspread.</p>
-                                <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-  " target="_blank" class="project-link">
+                                <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-title">Filter Tree UI - Logical Filter Constructor</div>
+                            <div class="project-desc">
+                                <p>Web application for creating and managing logical filter trees with AND/OR operators support, OpenAPI schemas integration and real-time filter testing capability.</p>
+                                <a href="https://github.com/Aleksey1989god/v0-filter-tree-ui" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i> View on GitHub
                                 </a>
                             </div>
@@ -805,7 +820,7 @@
 
                 <section class="section">
                     <h2 class="section-title">Education</h2>
-                    
+
                     <div class="education-card">
                         <div class="company-name">Moscow State University of Civil Engineering</div>
                         <div class="period">2013</div>
@@ -814,22 +829,36 @@
                             Major: Industrial and Civil Engineering, CAD
                         </div>
                     </div>
+                    <div class="education-card">
+                        <div class="company-name">School 21 (Sber) Data Science</div>
+                        <div class="period">2025</div>
+                        <div class="description">
+                            Program:<br>
+                            UNIX Command Line Tools, Syntax&Semantics, OOP skills, Package management, Efficient code practices, <br>
+                            MovieLens Analytics, Pandas, SQL&Pandas, Pandas_SQL& Data Visual, Intro to ML, ML: Advanced
+                        </div>
+                    </div>
                 </section>
 
                 <section class="section">
                     <h2 class="section-title">Certificates and Courses</h2>
-                    
+
                     <div class="certificates-grid">
                         <div class="certificate-card">
                             <div class="certificate-year">2025 - Current</div>
                             <div class="certificate-title">Data Science</div>
-                            <div class="certificate-org">School 21 (Sber) - Advanced ML/DL Training</div>
+                            <div class="certificate-org">School 21 (Sber) - Advanced ML/DL training</div>
                         </div>
 
                         <div class="certificate-card">
                             <div class="certificate-year">2025</div>
                             <div class="certificate-title">Artificial Intelligence</div>
-                            <div class="certificate-org">BootcampLabs - LLM (GigaChat), AI agents, IT Service Creation</div>
+                            <div class="certificate-org">
+                                <p>BootcampLabs</p>
+                                <p>LLM using GigaChat example</p>
+                                <p>AI agents</p>
+                                <p>IT service creation</p>
+                            </div>
                         </div>
 
                         <div class="certificate-card">
@@ -841,13 +870,13 @@
                         <div class="certificate-card">
                             <div class="certificate-year">2025</div>
                             <div class="certificate-title">BPM Project of the Year 2025</div>
-                            <div class="certificate-org">Award winner for ProShkola LLC digitalization project</div>
+                            <div class="certificate-org">Laureate of competition for ProShkola LLC digitalization project</div>
                         </div>
 
                         <div class="certificate-card">
                             <div class="certificate-year">2021</div>
                             <div class="certificate-title">Flutter Development</div>
-                            <div class="certificate-org">UGNTU - Cross-platform iOS/Android Applications</div>
+                            <div class="certificate-org">UGNTU - Cross-platform iOS/Android applications</div>
                         </div>
                     </div>
                 </section>
@@ -865,11 +894,12 @@
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">FSM</span>
                         <span class="skill-tag">asyncio</span>
-                        <span class="skill-tag">Algorithms and Data Structures</span>
+                        <span class="skill-tag">Pandas</span>
                         <span class="skill-tag">Agile</span>
                         <span class="skill-tag">Google Sheets API</span>
                         <span class="skill-tag">Process Mining</span>
                         <span class="skill-tag">python-docx</span>
+                        <span class="skill-tag">PostgreSQL</span>
                         <span class="skill-tag">gspread</span>
                     </div>
                 </section>
