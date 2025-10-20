@@ -1,577 +1,854 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Королёв Алексей Викторович - Data Scientist / ML Engineer</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Королёв Алексей Викторович - Data Scientist / ML Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css  ">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #2c3e50;
-      background: #ecf0f1;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-    }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 5px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 5px;
+            z-index: 1000;
+        }
 
-    /* Strict business header with navy blue background */
-    header {
-      background: #1e3a5f;
-      color: white;
-      padding: 2.5rem 2rem;
-      position: relative;
-      border-bottom: 4px solid #2c5282;
-    }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6b7280;
+            transition: all 0.3s;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
 
-    .header-controls {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
+        .lang-btn.active {
+            background: #1e40af;
+            color: white;
+        }
 
-    /* Minimal button style without decorative elements */
-    .btn {
-      background: white;
-      border: 1px solid #cbd5e0;
-      color: #1e3a5f;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      font-size: 0.875rem;
-      font-weight: 600;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #374151 100%);
+            color: white;
+            padding: 80px 40px 60px;
+            text-align: center;
+        }
 
-    .btn:hover {
-      background: #f7fafc;
-      border-color: #1e3a5f;
-    }
+        .photo-container {
+            margin-bottom: 30px;
+        }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            border: 4px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
 
-    /* Professional square photo with minimal border */
-    .profile-photo {
-      width: 120px;
-      height: 120px;
-      border: 3px solid white;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
 
-    .header-text {
-      flex: 1;
-    }
+        .header .position {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
 
-    /* Clean typography without decorative fonts */
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+            font-size: 0.95em;
+        }
 
-    .subtitle {
-      font-size: 1.1rem;
-      opacity: 0.95;
-      margin-bottom: 1rem;
-      font-weight: 400;
-    }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.95;
+        }
 
-    .contact-info {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        .contact-item a:hover {
+            opacity: 0.7;
+        }
 
-    /* Remove emoji icons, use text labels */
-    .contact-item::before {
-      content: attr(data-label);
-      font-weight: 600;
-      min-width: 60px;
-    }
+        .action-buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
 
-    main {
-      padding: 2rem;
-    }
+        .btn {
+            padding: 12px 30px;
+            border: 2px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+            background: transparent;
+            color: white;
+        }
 
-    section {
-      margin-bottom: 2.5rem;
-    }
+        .btn:hover {
+            background: white;
+            color: #1e3a8a;
+        }
 
-    /* Professional section headers with underline */
-    h2 {
-      font-size: 1.4rem;
-      color: #1e3a5f;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #2c5282;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+        }
 
-    /* Clean card design without hover effects */
-    .card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid #2c5282;
-    }
+        .content {
+            padding: 60px 40px;
+        }
 
-    .card h3 {
-      font-size: 1.15rem;
-      color: #1e3a5f;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
+        .section {
+            margin-bottom: 50px;
+        }
 
-    .card .meta {
-      color: #718096;
-      font-size: 0.875rem;
-      margin-bottom: 0.75rem;
-    }
+        .section-title {
+            font-size: 1.6em;
+            color: #1e3a8a;
+            margin-bottom: 30px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 15px;
+        }
 
-    .card .company {
-      color: #2c5282;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      font-size: 0.95rem;
-    }
+        .about-text {
+            color: #4b5563;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
 
-    .card ul {
-      margin-left: 1.5rem;
-      margin-top: 0.75rem;
-    }
+        .about-text p {
+            margin-bottom: 15px;
+        }
 
-    .card li {
-      margin-bottom: 0.5rem;
-      color: #4a5568;
-      line-height: 1.6;
-    }
+        .timeline-item {
+            margin-bottom: 35px;
+            padding-left: 30px;
+            border-left: 2px solid #e5e7eb;
+            position: relative;
+        }
 
-    /* Simple grid layout for skills without gradients */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 0.75rem;
-    }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #1e40af;
+        }
 
-    .skill-tag {
-      background: #f7fafc;
-      color: #2c5282;
-      padding: 0.6rem 1rem;
-      text-align: center;
-      font-size: 0.875rem;
-      font-weight: 600;
-      border: 1px solid #cbd5e0;
-    }
+        .timeline-header {
+            margin-bottom: 10px;
+        }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-    }
+        .company-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
 
-    .info-item {
-      background: #f7fafc;
-      padding: 1rem;
-      border-left: 3px solid #2c5282;
-      border: 1px solid #e2e8f0;
-    }
+        .position-name {
+            font-size: 1.05em;
+            font-weight: 500;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
 
-    .info-item strong {
-      color: #1e3a5f;
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+        .period {
+            color: #6b7280;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
 
-    .info-item p {
-      color: #4a5568;
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
+        .description {
+            color: #4b5563;
+            margin-top: 12px;
+            line-height: 1.7;
+        }
 
-    .info-item a {
-      color: #2c5282;
-      text-decoration: none;
-      font-weight: 600;
-    }
+        .description ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
 
-    .info-item a:hover {
-      text-decoration: underline;
-    }
+        .description li {
+            margin-bottom: 8px;
+        }
 
-    /* Professional footer with dark background */
-    footer {
-      background: #2d3748;
-      color: #e2e8f0;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.875rem;
-      border-top: 3px solid #1e3a5f;
-    }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 0;
-      }
+        .skill-tag {
+            background: #f3f4f6;
+            color: #1e40af;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.95em;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
 
-      .container {
-        box-shadow: none;
-      }
+        .skill-tag:hover {
+            background: #1e40af;
+            color: white;
+            border-color: #1e40af;
+        }
 
-      header {
-        padding: 2rem 1rem;
-      }
+        .projects-grid {
+            display: grid;
+            gap: 25px;
+        }
 
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-      }
+        .project-card {
+            padding: 25px;
+            background: #f9fafb;
+            border-radius: 4px;
+            border-left: 4px solid #1e40af;
+            transition: all 0.3s;
+        }
 
-      h1 {
-        font-size: 1.5rem;
-      }
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
 
-      .subtitle {
-        font-size: 1rem;
-      }
+        .project-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
 
-      .contact-info {
-        grid-template-columns: 1fr;
-      }
+        .project-desc {
+            color: #4b5563;
+            line-height: 1.7;
+        }
 
-      main {
-        padding: 1.5rem 1rem;
-      }
+        .project-link {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            display: inline-block;
+        }
 
-      .header-controls {
-        position: static;
-        justify-content: center;
-        margin-bottom: 1rem;
-      }
-    }
+        .project-link:hover {
+            text-decoration: underline;
+        }
 
-    @media print {
-      body {
-        background: white;
-        padding: 0;
-      }
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
 
-      .container {
-        box-shadow: none;
-      }
+        .certificate-card {
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
 
-      .header-controls,
-      footer {
-        display: none;
-      }
+        .certificate-card:hover {
+            border-color: #1e40af;
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.1);
+        }
 
-      header {
-        padding: 1.5rem 1rem;
-        background: white;
-        color: #1e3a5f;
-        border-bottom: 2px solid #2c5282;
-      }
+        .certificate-year {
+            color: #1e40af;
+            font-weight: 700;
+            font-size: 1em;
+            margin-bottom: 8px;
+        }
 
-      .profile-photo {
-        border-color: #2c5282;
-      }
+        .certificate-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+            font-size: 1.05em;
+        }
 
-      .card {
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
+        .certificate-org {
+            color: #6b7280;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
 
-      h2 {
-        page-break-after: avoid;
-      }
-    }
+        .education-card {
+            padding: 25px;
+            background: #f9fafb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
 
-    .hidden {
-      display: none;
-    }
-  </style>
+        .footer {
+            background: #1f2937;
+            color: #9ca3af;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 20px 40px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .contact-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .content {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-switcher {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="header-controls">
-        <button class="btn" onclick="toggleLanguage()" id="langBtn">
-          <span id="langText">EN</span>
-        </button>
-        <button class="btn" onclick="exportPDF()">
-          <span data-ru="PDF" data-en="PDF">PDF</span>
-        </button>
-      </div>
-
-      <div class="header-content">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1753054725532657583-PXpRaeesT3oxvaCWMOn7FpTetwMHhH.jpg" alt="Profile Photo" class="profile-photo">
-        
-        <div class="header-text">
-          <h1 data-ru="Королёв Алексей Викторович" data-en="Alexey Korolev">Королёв Алексей Викторович</h1>
-          <p class="subtitle" data-ru="Data Scientist / Machine Learning Engineer" data-en="Data Scientist / Machine Learning Engineer">Data Scientist / Machine Learning Engineer</p>
-          
-          <div class="contact-info">
-            <div class="contact-item" data-label="Тел:">
-              <span>+7 (903) 189-92-98</span>
-            </div>
-            <div class="contact-item" data-label="Email:">
-              <span>gid89@inbox.ru</span>
-            </div>
-            <div class="contact-item" data-label="Адрес:" data-ru="Адрес:" data-en="Location:">
-              <span data-ru="Москва, м. Братиславская" data-en="Moscow, Russia">Москва, м. Братиславская</span>
-            </div>
-            <div class="contact-item" data-label="Возраст:" data-ru="Возраст:" data-en="Age:">
-              <span data-ru="35 лет (24.12.1989)" data-en="35 years (24.12.1989)">35 лет (24.12.1989)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main>
-      <!-- Experience Section -->
-      <section id="experience">
-        <h2 data-ru="Опыт работы" data-en="Work Experience">Опыт работы</h2>
-        
-        <div class="card">
-          <h3 data-ru="Главный специалист" data-en="Chief Specialist">Главный специалист</h3>
-          <p class="company">ООО «ПроШкола»</p>
-          <p class="meta" data-ru="Март 2023 — Март 2025 (2 года 1 месяц)" data-en="March 2023 — March 2025 (2 years 1 month)">Март 2023 — Март 2025 (2 года 1 месяц)</p>
-          <ul data-ru>
-            <li>Разработал и внедрил LLM-подобные workflow в виде Telegram-ботов на Python (aiogram 3.x), используя FSM (Finite State Machine) для управления контекстом диалога — аналог агентных систем</li>
-            <li>Создал многофункционального Telegram-бота, выступающего как единый информационный хаб: интегрирован с Google Sheets через gspread, обеспечивает доступ к ключевым метрикам для команд (финансы, строительство, юриспруденция)</li>
-            <li>Спроектировал и реализовал систему учета дефектов с поддержкой фото, текстового описания и генерацией отчетов в формате DOCX</li>
-            <li>Построил пайплайн сбора и обогащения данных: пользователи загружают изображения дефектов + текст → данные сохраняются в SQLite → экспортируются в структурированный .docx (через python-docx)</li>
-            <li>Использовал асинхронную обработку (asyncio, aiosqlite) и валидацию ввода — аналог предобработки данных в ML-пайплайнах</li>
-            <li>Участвовал в реализации проекта "Цифровизация управления образовательной инфраструктурой" в роли функционального методолога. <strong>Лауреат конкурса «BPM-проект года'2025»</strong></li>
-          </ul>
-          <ul data-en class="hidden">
-            <li>Developed and implemented LLM-like workflows as Telegram bots in Python (aiogram 3.x), using FSM (Finite State Machine) for dialogue context management — analogous to agent systems</li>
-            <li>Created a multifunctional Telegram bot serving as a unified information hub: integrated with Google Sheets via gspread, providing access to key metrics for teams (finance, construction, legal)</li>
-            <li>Designed and implemented a defect tracking system with photo support, text descriptions, and DOCX report generation</li>
-            <li>Built a data collection and enrichment pipeline: users upload defect images + text → data saved to SQLite → exported to structured .docx (via python-docx)</li>
-            <li>Used asynchronous processing (asyncio, aiosqlite) and input validation — analogous to data preprocessing in ML pipelines</li>
-            <li>Participated in the "Digitalization of Educational Infrastructure Management" project as a functional methodologist. <strong>Winner of the "BPM Project of the Year 2025" award</strong></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3 data-ru="Руководитель отдела обследований" data-en="Head of Inspection Department">Руководитель отдела обследований</h3>
-          <p class="company">ООО «А-Эксперт», ООО «ЭсАрджи-Консалтинг»</p>
-          <p class="meta" data-ru="Ноябрь 2015 — Март 2023 (7 лет 5 месяцев)" data-en="November 2015 — March 2023 (7 years 5 months)">Ноябрь 2015 — Март 2023 (7 лет 5 месяцев)</p>
-          <ul data-ru>
-            <li>Управлял командой из 12 экспертов, отвечал за качество и сроки технических заключений</li>
-            <li>Оптимизировал процессы экспертной оценки, что позволило сократить сроки подготовки ТЗ на 20%</li>
-            <li>Подготовил коммерческие предложения на основе анализа входных данных клиентов</li>
-            <li>Руководил получением лицензии ЭПБ — проектное управление, координация между командами</li>
-          </ul>
-          <ul data-en class="hidden">
-            <li>Managed a team of 12 experts, responsible for quality and deadlines of technical reports</li>
-            <li>Optimized expert assessment processes, reducing technical specification preparation time by 20%</li>
-            <li>Prepared commercial proposals based on client input data analysis</li>
-            <li>Led the acquisition of industrial safety license — project management, team coordination</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3 data-ru="Эксперт промышленной безопасности" data-en="Industrial Safety Expert">Эксперт промышленной безопасности</h3>
-          <p class="company">ООО СЕРКОНС</p>
-          <p class="meta" data-ru="Август 2012 — Ноябрь 2015 (3 года 4 месяца)" data-en="August 2012 — November 2015 (3 years 4 months)">Август 2012 — Ноябрь 2015 (3 года 4 месяца)</p>
-          <ul data-ru>
-            <li>Проводил экспертизу проектной документации, обследование зданий, анализ состояния объектов</li>
-            <li>Разрабатывал обоснования безопасности — формализация знаний, аналогичная документированию ML-решений</li>
-          </ul>
-          <ul data-en class="hidden">
-            <li>Conducted expertise of project documentation, building inspections, facility condition analysis</li>
-            <li>Developed safety justifications — knowledge formalization similar to ML solution documentation</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Education Section -->
-      <section id="education">
-        <h2 data-ru="Образование" data-en="Education">Образование</h2>
-        
-        <div class="card">
-          <h3 data-ru="Московский государственный строительный университет" data-en="Moscow State University of Civil Engineering">Московский государственный строительный университет</h3>
-          <p class="meta" data-ru="2013 • Высшее образование" data-en="2013 • Higher Education">2013 • Высшее образование</p>
-          <p data-ru>Институт гидротехнического и энергетического строительства, профиль «Промышленное и гражданское строительство», профилизация: САПР</p>
-          <p data-en class="hidden">Institute of Hydraulic and Energy Construction, specialization "Industrial and Civil Engineering", focus: CAD</p>
-        </div>
-
-        <div class="card">
-          <h3 data-ru="Дополнительное образование" data-en="Additional Education">Дополнительное образование</h3>
-          <ul data-ru>
-            <li><strong>2025</strong> — Process Mining (АНО ДПО «Корпоративный университет Сбербанка»)</li>
-            <li><strong>2025</strong> — «Искусственный интеллект» (BootcampLabs: LLM на примере GigaChat, AI-агенты, Создание ИТ-сервиса)</li>
-            <li><strong>2021</strong> — «Разработка кросс-платформенных мобильных приложений на Flutter для iOS и Android» (УГНТУ)</li>
-          </ul>
-          <ul data-en class="hidden">
-            <li><strong>2025</strong> — Process Mining (Sberbank Corporate University)</li>
-            <li><strong>2025</strong> — "Artificial Intelligence" (BootcampLabs: LLM with GigaChat, AI Agents, IT Service Development)</li>
-            <li><strong>2021</strong> — "Cross-platform Mobile App Development with Flutter for iOS and Android" (USPTU)</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Skills Section -->
-      <section id="skills">
-        <h2 data-ru="Навыки" data-en="Skills">Навыки</h2>
-        <div class="skills-grid">
-          <div class="skill-tag">Python</div>
-          <div class="skill-tag">PyTorch</div>
-          <div class="skill-tag">SQL</div>
-          <div class="skill-tag">aiogram</div>
-          <div class="skill-tag">aiosqlite</div>
-          <div class="skill-tag">Machine Learning</div>
-          <div class="skill-tag">Deep Learning</div>
-          <div class="skill-tag">LLM</div>
-          <div class="skill-tag">Transformers</div>
-          <div class="skill-tag">Docker</div>
-          <div class="skill-tag">Git</div>
-          <div class="skill-tag">Agile</div>
-        </div>
-      </section>
-
-      <!-- Additional Info Section -->
-      <section id="additional">
-        <h2 data-ru="Дополнительная информация" data-en="Additional Information">Дополнительная информация</h2>
-        
-        <div class="info-grid">
-          <div class="info-item">
-            <strong data-ru="Текущее обучение" data-en="Current Education">Текущее обучение</strong>
-            <p data-ru>Школа 21 (Сбер) — программа Data Science с фокусом на практическое применение ML/DL, участие в хакатонах и цифровых чемпионатах</p>
-            <p data-en class="hidden">School 21 (Sber) — Data Science program focused on practical ML/DL application, participation in hackathons and digital championships</p>
-          </div>
-          
-          <div class="info-item">
-            <strong data-ru="Самообразование" data-en="Self-Education">Самообразование</strong>
-            <p data-ru>Изучаю Transformers, LLM, VLM, Docker. Разрабатываю чат-ботов и экспериментирую с fine-tuning моделей</p>
-            <p data-en class="hidden">Studying Transformers, LLM, VLM, Docker. Developing chatbots and experimenting with model fine-tuning</p>
-          </div>
-          
-          <div class="info-item">
-            <strong data-ru="Языки" data-en="Languages">Языки</strong>
-            <p data-ru>Русский — родной<br>Английский — A1 (начальный)</p>
-            <p data-en class="hidden">Russian — Native<br>English — A1 (Beginner)</p>
-          </div>
-          
-          <div class="info-item">
-            <strong data-ru="Водительские права" data-en="Driver's License">Водительские права</strong>
-            <p data-ru>Категории A, B. Есть собственный автомобиль</p>
-            <p data-en class="hidden">Categories A, B. Own car available</p>
-          </div>
-          
-          <div class="info-item">
-            <strong data-ru="Хобби" data-en="Hobbies">Хобби</strong>
-            <p data-ru>Бокс, бег, альпинизм, трекинг</p>
-            <p data-en class="hidden">Boxing, running, mountaineering, trekking</p>
-          </div>
-          
-          <div class="info-item">
-            <strong data-ru="Проекты" data-en="Projects">Проекты</strong>
-            <p>Pet Project: <a href="https://gitverse.ru/hightowy/hightowy/content/develop" target="_blank">GitVerse</a></p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="no-print">
-      <p data-ru="© 2025 Королёв Алексей Викторович. Все права защищены." data-en="© 2025 Alexey Korolev. All rights reserved.">© 2025 Королёв Алексей Викторович. Все права защищены.</p>
-    </footer>
-  </div>
-
-  <script>
-    let currentLang = 'ru';
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'ru' ? 'en' : 'ru';
-      updateLanguage();
-    }
-
-    function updateLanguage() {
-      const elements = document.querySelectorAll('[data-ru]');
-      const langBtn = document.getElementById('langText');
-      
-      elements.forEach(el => {
-        const ruText = el.getAttribute('data-ru');
-        const enText = el.getAttribute('data-en');
-        
-        if (ruText && enText) {
-          el.textContent = currentLang === 'ru' ? ruText : enText;
+    <script>
+        function switchLang(lang) {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const langContents = document.querySelectorAll('.lang-content');
+            
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            langContents.forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`[onclick="switchLang('${lang}')"]`).classList.add('active');
+            document.getElementById(`lang-${lang}`).classList.add('active');
+            
+            document.documentElement.lang = lang;
         }
-      });
 
-      // Update contact labels
-      document.querySelectorAll('.contact-item').forEach(el => {
-        const label = el.getAttribute('data-label');
-        if (currentLang === 'en') {
-          if (label === 'Тел:') el.setAttribute('data-label', 'Tel:');
-          if (label === 'Адрес:') el.setAttribute('data-label', 'Location:');
-          if (label === 'Возраст:') el.setAttribute('data-label', 'Age:');
-        } else {
-          if (label === 'Tel:') el.setAttribute('data-label', 'Тел:');
-          if (label === 'Location:') el.setAttribute('data-label', 'Адрес:');
-          if (label === 'Age:') el.setAttribute('data-label', 'Возраст:');
+        function downloadPDF(lang) {
+            // This is a placeholder function. In a real implementation, you would generate the PDF
+            // based on the content of the active language section.
+            // For now, it just shows an alert.
+            if (lang === 'ru') {
+                alert('Скачивание PDF на русском языке...');
+                window.print();
+            } else if (lang === 'en') {
+                alert('Downloading PDF in English...');
+                window.print();
+            } else {
+                window.print();
+            }
         }
-      });
+    </script>
 
-      // Toggle visibility of language-specific lists
-      document.querySelectorAll('[data-ru]:not([data-en])').forEach(el => {
-        el.classList.toggle('hidden', currentLang !== 'ru');
-      });
-      
-      document.querySelectorAll('[data-en]:not([data-ru])').forEach(el => {
-        el.classList.toggle('hidden', currentLang !== 'en');
-      });
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="switchLang('ru')">RU</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+    </div>
 
-      langBtn.textContent = currentLang === 'ru' ? 'EN' : 'RU';
-      document.documentElement.lang = currentLang;
-    }
+    <!-- Russian Version -->
+    <div id="lang-ru" class="lang-content active">
+        <div class="header">
+            <div class="photo-container">
+                <div class="photo-placeholder">
+                    <!-- Заменяем иконку на изображение -->
+                    <img src="images/avatar.jpg" alt="Alexey Korolyov" style="width:100%; height:100%; border-radius: 50%; object-fit: cover;">
+                    <!-- Стили inline добавлены для примера, лучше перенести в CSS -->
+                </div>
+            </div>
+            <h1>Королёв Алексей Викторович</h1>
+            <div class="position">Data Scientist / Machine Learning Engineer</div>
+            
+            <div class="contact-bar">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Москва</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>35 лет</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+79031899298">+7 (903) 189-92-98</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:gid89@inbox.ru">gid89@inbox.ru</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <a href="https://t.me/aleksey1989god  " target="_blank">@aleksey1989god</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-  " target="_blank">GitHub</a>
+                </div>
+            </div>
 
-    function exportPDF() {
-      window.print();
-    }
+            <div class="action-buttons">
+                <a href="#" class="btn" onclick="downloadPDF('ru'); return false;">
+                    <i class="fas fa-download"></i> Скачать PDF
+                </a>
+                <a href="mailto:gid89@inbox.ru" class="btn">
+                    <i class="fas fa-envelope"></i> Связаться
+                </a>
+            </div>
+        </div>
 
-    // Initialize language on page load
-    updateLanguage();
-  </script>
+        <div class="container">
+            <div class="content">
+                <section class="section">
+                    <h2 class="section-title">О себе</h2>
+                    <div class="about-text">
+                        <p>В настоящий момент прохожу углублённое обучение в Школе 21 (Сбер) по программе Data Science с фокусом на практическое применение ML/DL, участие в хакатонах и цифровых чемпионатах.</p>
+                        <p>Самостоятельно изучаю Transformers, LLM, VLM, Docker, разрабатываю чат-ботов и экспериментирую с fine-tuning моделей. Участник внутренних DS-чемпионатов, решаю задачи по классификации, генерации текста и анализу последовательностей.</p>
+                        <p>Веду активный образ жизни: бокс, бег, альпинизм, трекинг. Имею водительские права категории A, B.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Опыт работы</h2>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="company-name">ООО «ПроШкола»</div>
+                            <div class="position-name">Главный специалист</div>
+                            <div class="period">Март 2023 — Март 2025 (2 года 1 месяц)</div>
+                        </div>
+                        <div class="description">
+                            <ul>
+                                <li>Разработал и внедрил LLM-подобные workflow в виде Telegram-ботов на Python (aiogram 3.x) с использованием FSM для управления контекстом диалога</li>
+                                <li>Создал многофункционального Telegram-бота, интегрированного с Google Sheets через gspread, обеспечивающего доступ к ключевим метрикам для команд</li>
+                                <li>Спроектировал систему учета дефектов с поддержкой фото и генерацией отчетов в DOCX формате</li>
+                                <li>Построил пайплайн сбора и обогащения данных с использованием SQLite и асинхронной обработки (asyncio, aiosqlite)</li>
+                                <li>Лауреат конкурса «BPM-проект года'2025» за участие в проекте цифровизации управления образовательной инфраструктурой</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="company-name">ООО «А-Эксперт», ООО «ЭсАрджи-Консалтинг»</div>
+                            <div class="position-name">Руководитель отдела обследований</div>
+                            <div class="period">Ноябрь 2015 — Март 2023 (7 лет 5 месяцев)</div>
+                        </div>
+                        <div class="description">
+                            <ul>
+                                <li>Управлял командой из 12 экспертов, отвечал за качество и сроки технических заключений</li>
+                                <li>Оптимизировал процессы экспертной оценки, сократив сроки подготовки ТЗ на 20%</li>
+                                <li>Подготовка коммерческих предложений на основе анализа входных данных клиентов</li>
+                                <li>Руководил получением лицензии ЭПБ, обеспечивал координацию между командами</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="company-name">ООО СЕРКОНС</div>
+                            <div class="position-name">Эксперт промышленной безопасности</div>
+                            <div class="period">Август 2012 — Ноябрь 2015 (3 года 4 месяца)</div>
+                        </div>
+                        <div class="description">
+                            <ul>
+                                <li>Проводил экспертизу проектной документации, обследование зданий, анализ состояния объектов</li>
+                                <li>Работа с неструктурированными данными и изображениями (фото дефектов, чертежи)</li>
+                                <li>Разрабатывал обоснования безопасности, формализация технических знаний</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Pet-проекты</h2>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-title">Telegram-бот для учета дефектов</div>
+                            <div class="project-desc">
+                                <p>Многофункциональный бот с FSM, интеграцией SQLite, генерацией DOCX-отчетов. Технологии: aiogram 3.x, asyncio, aiosqlite, python-docx, gspread.</p>
+                                <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-  " target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> Посмотреть на GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Образование</h2>
+                    
+                    <div class="education-card">
+                        <div class="company-name">Московский государственный строительный университет</div>
+                        <div class="period">2013</div>
+                        <div class="description">
+                            Институт гидротехнического и энергетического строительства<br>
+                            Профиль: Промышленное и гражданское строительство, САПР
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Сертификаты и курсы</h2>
+                    
+                    <div class="certificates-grid">
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025 - Текущее</div>
+                            <div class="certificate-title">Data Science</div>
+                            <div class="certificate-org">Школа 21 (Сбер) - Углублённое обучение ML/DL</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025</div>
+                            <div class="certificate-title">Искусственный интеллект</div>
+                            <div class="certificate-org">BootcampLabs - LLM (GigaChat), AI-агенты, Создание ИТ-сервиса</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025</div>
+                            <div class="certificate-title">Process Mining</div>
+                            <div class="certificate-org">Корпоративный университет Сбербанка</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025</div>
+                            <div class="certificate-title">BPM-проект года'2025</div>
+                            <div class="certificate-org">Лауреат конкурса за проект цифровизации ООО ПроШкола</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2021</div>
+                            <div class="certificate-title">Flutter разработка</div>
+                            <div class="certificate-org">УГНТУ - Кросс-платформенные приложения iOS/Android</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Навыки</h2>
+                    <div class="skills-container">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">aiogram</span>
+                        <span class="skill-tag">aiosqlite</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">LLM / VLM</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">FSM</span>
+                        <span class="skill-tag">asyncio</span>
+                        <span class="skill-tag">Алгоритмы и структуры данных</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Google Sheets API</span>
+                        <span class="skill-tag">Process Mining</span>
+                        <span class="skill-tag">python-docx</span>
+                        <span class="skill-tag">gspread</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- English Version -->
+    <div id="lang-en" class="lang-content">
+        <div class="header">
+            <div class="photo-container">
+                <div class="photo-placeholder">
+                    <!-- Заменяем иконку на изображение -->
+                    <img src="images/avatar.jpg" alt="Alexey Korolyov" style="width:100%; height:100%; border-radius: 50%; object-fit: cover;">
+                    <!-- Стили inline добавлены для примера, лучше перенести в CSS -->
+                </div>
+            </div>
+            <h1>Alexey Korolyov</h1>
+            <div class="position">Data Scientist / Machine Learning Engineer</div>
+            
+            <div class="contact-bar">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Moscow, Russia</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>35 years old</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+79031899298">+7 (903) 189-92-98</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:gid89@inbox.ru">gid89@inbox.ru</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <a href="https://t.me/aleksey1989god  " target="_blank">@aleksey1989god</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-  " target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="#" class="btn" onclick="downloadPDF('en'); return false;">
+                    <i class="fas fa-download"></i> Download PDF
+                </a>
+                <a href="mailto:gid89@inbox.ru" class="btn">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <section class="section">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-text">
+                        <p>Currently undertaking advanced training at School 21 (Sber) in Data Science program, focusing on practical ML/DL applications, participating in hackathons and digital championships.</p>
+                        <p>Self-studying Transformers, LLM, VLM, Docker, developing chatbots and experimenting with model fine-tuning. Participant in internal DS championships, solving problems in classification, text generation and sequence analysis.</p>
+                        <p>Active lifestyle: boxing, running, mountaineering, trekking. Valid driving license categories A, B.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Work Experience</h2>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="company-name">ProShkola LLC</div>
+                            <div class="position-name">Chief Specialist</div>
+                            <div class="period">March 2023 — March 2025 (2 years 1 month)</div>
+                        </div>
+                        <div class="description">
+                            <ul>
+                                <li>Developed and implemented LLM-like workflows as Telegram bots using Python (aiogram 3.x) with FSM for dialogue context management</li>
+                                <li>Created multifunctional Telegram bot integrated with Google Sheets via gspread, providing access to key metrics for teams</li>
+                                <li>Designed defect tracking system with photo support and DOCX report generation</li>
+                                <li>Built data collection and enrichment pipeline using SQLite and asynchronous processing (asyncio, aiosqlite)</li>
+                                <li>Award winner of "BPM Project of the Year 2025" for participation in educational infrastructure digitalization project</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="company-name">A-Expert LLC, SRG-Consulting LLC</div>
+                            <div class="position-name">Head of Survey Department</div>
+                            <div class="period">November 2015 — March 2023 (7 years 5 months)</div>
+                        </div>
+                        <div class="description">
+                            <ul>
+                                <li>Managed team of 12 experts, responsible for quality and deadlines of technical reports</li>
+                                <li>Optimized expert assessment processes, reducing technical specification preparation time by 20%</li>
+                                <li>Prepared commercial proposals based on client data analysis</li>
+                                <li>Led EPB license acquisition, coordinated between teams</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="company-name">SERCONS LLC</div>
+                            <div class="position-name">Industrial Safety Expert</div>
+                            <div class="period">August 2012 — November 2015 (3 years 4 months)</div>
+                        </div>
+                        <div class="description">
+                            <ul>
+                                <li>Conducted expertise of project documentation, building surveys, object condition analysis</li>
+                                <li>Worked with unstructured data and images (defect photos, blueprints)</li>
+                                <li>Developed safety justifications, technical knowledge formalization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Pet Projects</h2>
+                    
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-title">Telegram Bot for Defect Tracking</div>
+                            <div class="project-desc">
+                                <p>Multifunctional bot with FSM, SQLite integration, DOCX report generation. Technologies: aiogram 3.x, asyncio, aiosqlite, python-docx, gspread.</p>
+                                <a href="https://github.com/Aleksey1989god/U-32mg8-cw0UR-  " target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Education</h2>
+                    
+                    <div class="education-card">
+                        <div class="company-name">Moscow State University of Civil Engineering</div>
+                        <div class="period">2013</div>
+                        <div class="description">
+                            Institute of Hydraulic and Power Engineering Construction<br>
+                            Major: Industrial and Civil Engineering, CAD
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Certificates and Courses</h2>
+                    
+                    <div class="certificates-grid">
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025 - Current</div>
+                            <div class="certificate-title">Data Science</div>
+                            <div class="certificate-org">School 21 (Sber) - Advanced ML/DL Training</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025</div>
+                            <div class="certificate-title">Artificial Intelligence</div>
+                            <div class="certificate-org">BootcampLabs - LLM (GigaChat), AI agents, IT Service Creation</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025</div>
+                            <div class="certificate-title">Process Mining</div>
+                            <div class="certificate-org">Sberbank Corporate University</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2025</div>
+                            <div class="certificate-title">BPM Project of the Year 2025</div>
+                            <div class="certificate-org">Award winner for ProShkola LLC digitalization project</div>
+                        </div>
+
+                        <div class="certificate-card">
+                            <div class="certificate-year">2021</div>
+                            <div class="certificate-title">Flutter Development</div>
+                            <div class="certificate-org">UGNTU - Cross-platform iOS/Android Applications</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Skills</h2>
+                    <div class="skills-container">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">aiogram</span>
+                        <span class="skill-tag">aiosqlite</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">LLM / VLM</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">FSM</span>
+                        <span class="skill-tag">asyncio</span>
+                        <span class="skill-tag">Algorithms and Data Structures</span>
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Google Sheets API</span>
+                        <span class="skill-tag">Process Mining</span>
+                        <span class="skill-tag">python-docx</span>
+                        <span class="skill-tag">gspread</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Alexey Korolyov. All rights reserved.</p>
+    </div>
 </body>
 </html>
